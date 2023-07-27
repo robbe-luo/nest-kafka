@@ -1,0 +1,8 @@
+{
+  "files": [],
+  "references": [
+    {
+      "path": "./kafka/tsconfig.build.json"
+    }
+  ]
+}

@@ -1,0 +1,3 @@
+interface RegistryConsumerOptions {
+  groupId: string;
+}

@@ -1,0 +1,38 @@
+{
+  "name": "@robbe-luo/nest-kafka",
+  "version": "0.1.0",
+  "description": "nestjs kafka",
+  "homepage": "https://github.com/robbe-luo/nest-kafka",
+  "bugs": {
+    "url": "https://github.com/robbe-luo/nest-kafka/issues"
+  },
+  "repository": {
+    "type": "git",
+    "directory": "packages/kafka",
+    "url": "git+https://github.com/robbe-luo/nest-kafka.git"
+  },
+  "licenses": "MIT",
+  "keywords": [
+    "nestjs",
+    "kafka"
+  ],
+  "author": "robbe luo <robbe.luo@gmail.com>",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "devDependencies": {
+    "@nestjs/common": "10.1.2",
+    "@nestjs/core": "10.1.2",
+    "@nestjs/testing": "^10.1.2",
+    "@types/jest": "^29.5.3",
+    "@types/reflect-metadata": "0.1.0",
+    "kafkajs": "^2.2.4",
+    "reflect-metadata": "^0.1.13",
+    "rxjs": "7.8.1"
+  },
+  "peerDependencies": {
+    "kafkajs": "^2.2"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

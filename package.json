@@ -1,0 +1,29 @@
+{
+  "name": "nest-kafka",
+  "version": "1.0.0",
+  "description": "nestjs kafka",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc -b -v packages",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "workspaces": [
+    "packages"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/robbe-luo/nest-kafka.git"
+  },
+  "keywords": [],
+  "author": "robbe luo<robbe.luo@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/robbe-luo/nest-kafka/issues"
+  },
+  "homepage": "https://github.com/robbe-luo/nest-kafka#readme",
+  "devDependencies": {
+    "jest": "^29.6.2",
+    "tslib": "^2.6.1",
+    "typescript": "^5.1.6"
+  }
+}
