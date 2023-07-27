@@ -1,6 +1,6 @@
 {
   "name": "@robbe-luo/nest-kafka",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "nestjs kafka",
   "homepage": "https://github.com/robbe-luo/nest-kafka",
   "bugs": {
@@ -15,6 +15,10 @@
   "keywords": [
     "nestjs",
     "kafka"
+  ],
+  "files": [
+    "dist",
+    "README.md"
   ],
   "author": "robbe luo <robbe.luo@gmail.com>",
   "main": "dist/index.js",
