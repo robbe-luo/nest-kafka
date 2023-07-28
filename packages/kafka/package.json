@@ -1,8 +1,8 @@
 {
   "name": "@robbe-luo/nest-kafka",
-  "version": "0.1.1",
-  "description": "nestjs kafka",
-  "homepage": "https://github.com/robbe-luo/nest-kafka",
+  "version": "0.1.2",
+  "description": "Kafka for NestJS",
+  "homepage": "https://github.com/robbe-luo/nest-kafka/tree/main/packages/kafka/README.md",
   "bugs": {
     "url": "https://github.com/robbe-luo/nest-kafka/issues"
   },
@@ -11,7 +11,7 @@
     "directory": "packages/kafka",
     "url": "git+https://github.com/robbe-luo/nest-kafka.git"
   },
-  "licenses": "MIT",
+  "license": "MIT",
   "keywords": [
     "nestjs",
     "kafka"

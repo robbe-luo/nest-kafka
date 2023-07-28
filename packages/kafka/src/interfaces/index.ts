@@ -1,11 +1,11 @@
 import { FactoryProvider, ModuleMetadata, Type } from '@nestjs/common';
 import { KafkaConfig } from 'kafkajs';
 
-export interface SharedBullConfigurationFactory {
+export interface SharedKafkaConfigurationFactory {
   createSharedConfiguration(): Promise<KafkaConfig> | KafkaConfig;
 }
 
-export interface BullModuleAsyncOptions extends Pick<ModuleMetadata, 'imports'> {
+export interface KafkaModuleAsyncOptions extends Pick<ModuleMetadata, 'imports'> {
   useClass?: Type<KafkaConfig>;
 
   useExisting?: Type<KafkaConfig>;
@@ -15,16 +15,16 @@ export interface BullModuleAsyncOptions extends Pick<ModuleMetadata, 'imports'> 
   inject?: FactoryProvider['inject'];
 }
 
-export interface SharedBullAsyncConfiguration extends Pick<ModuleMetadata, 'imports'> {
+export interface SharedKafkaAsyncConfiguration extends Pick<ModuleMetadata, 'imports'> {
   /**
    * Existing Provider to be used.
    */
-  useExisting?: Type<SharedBullConfigurationFactory>;
+  useExisting?: Type<SharedKafkaConfigurationFactory>;
 
   /**
    * Type (class name) of provider (instance to be registered and injected).
    */
-  useClass?: Type<SharedBullConfigurationFactory>;
+  useClass?: Type<SharedKafkaConfigurationFactory>;
 
   /**
    * Factory function that returns an instance of the provider to be injected.
@@ -37,4 +37,4 @@ export interface SharedBullAsyncConfiguration extends Pick<ModuleMetadata, 'impo
   inject?: FactoryProvider['inject'];
 }
 
-export interface BullRootModuleOptions extends KafkaConfig {}
+export interface KafkaRootModuleOptions extends KafkaConfig {}

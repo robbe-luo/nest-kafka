@@ -1,6 +1,6 @@
 import { Injectable, Type } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
-import { BULL_MODULE_ON_QUEUE_EVENT, KAFKA_MODULE_MESSAGE_QUEUE, KAFKA_MODULE_SUBSCRIBE } from './kafka.constants';
+import { KAFKA_MODULE_MESSAGE_QUEUE, KAFKA_MODULE_SUBSCRIBE } from './kafka.constants';
 
 @Injectable()
 export class KafkaMetadataAccessor {

@@ -8,49 +8,49 @@ import { KafkaMetadataAccessor } from './kafka-metadata.accessor';
 import { getMQToken, getSharedConfigToken } from './utils';
 import { KafkaConfig } from 'kafkajs';
 import {
-  BullModuleAsyncOptions,
-  BullRootModuleOptions,
-  SharedBullAsyncConfiguration,
-  SharedBullConfigurationFactory,
+  KafkaModuleAsyncOptions,
+  KafkaRootModuleOptions,
+  SharedKafkaAsyncConfiguration,
+  SharedKafkaConfigurationFactory,
 } from './interfaces';
 
 @Module({})
 export class KafkaModule {
-  static forRoot(bullConfig: BullRootModuleOptions): DynamicModule;
-  static forRoot(configKey: string, bullConfig: BullRootModuleOptions): DynamicModule;
-  static forRoot(keyOrConfig: string | BullRootModuleOptions, bullConfig?: BullRootModuleOptions): DynamicModule {
-    const [configKey, sharedBullConfig] =
-      typeof keyOrConfig === 'string' ? [keyOrConfig, bullConfig] : [undefined, keyOrConfig];
+  static forRoot(kafkaConfig: KafkaRootModuleOptions): DynamicModule;
+  static forRoot(configKey: string, kafkaConfig: KafkaRootModuleOptions): DynamicModule;
+  static forRoot(keyOrConfig: string | KafkaRootModuleOptions, kafkaConfig?: KafkaRootModuleOptions): DynamicModule {
+    const [configKey, sharedKafkaConfig] =
+      typeof keyOrConfig === 'string' ? [keyOrConfig, kafkaConfig] : [undefined, keyOrConfig];
 
-    const sharedBullConfigProvider: Provider = {
+    const sharedKafkaConfigProvider: Provider = {
       provide: getSharedConfigToken(configKey),
-      useValue: sharedBullConfig,
+      useValue: sharedKafkaConfig,
     };
 
     const serviceProvider: Provider = {
       provide: getMQToken(KAFKA_MODULE_PROVIDER),
-      useFactory: () => new KafkaService(sharedBullConfig),
+      useFactory: () => new KafkaService(sharedKafkaConfig),
     };
 
     return {
       global: true,
       module: KafkaModule,
-      providers: [sharedBullConfigProvider, serviceProvider],
-      exports: [sharedBullConfigProvider, serviceProvider],
+      providers: [sharedKafkaConfigProvider, serviceProvider],
+      exports: [sharedKafkaConfigProvider, serviceProvider],
     };
   }
 
-  static forRootAsync(asyncBullConfig: SharedBullAsyncConfiguration): DynamicModule;
-  static forRootAsync(keyOrAsyncConfig: string, asyncBullConfig: SharedBullAsyncConfiguration): DynamicModule;
+  static forRootAsync(asyncKafkaConfig: SharedKafkaAsyncConfiguration): DynamicModule;
+  static forRootAsync(keyOrAsyncConfig: string, asyncKafkaConfig: SharedKafkaAsyncConfiguration): DynamicModule;
   static forRootAsync(
-    keyOrAsyncConfig: string | SharedBullAsyncConfiguration,
-    asyncBullConfig?: SharedBullAsyncConfiguration,
+    keyOrAsyncConfig: string | SharedKafkaAsyncConfiguration,
+    asyncKafkaConfig?: SharedKafkaAsyncConfiguration,
   ): DynamicModule {
-    const [configKey, asyncSharedBullConfig] =
-      typeof keyOrAsyncConfig === 'string' ? [keyOrAsyncConfig, asyncBullConfig] : [undefined, keyOrAsyncConfig];
+    const [configKey, asyncSharedKafkaConfig] =
+      typeof keyOrAsyncConfig === 'string' ? [keyOrAsyncConfig, asyncKafkaConfig] : [undefined, keyOrAsyncConfig];
 
-    const imports = this.getUniqImports([asyncSharedBullConfig]);
-    const providers = this.createAsyncSharedConfigurationProviders(configKey, asyncSharedBullConfig);
+    const imports = this.getUniqImports([asyncSharedKafkaConfig]);
+    const providers = this.createAsyncSharedConfigurationProviders(configKey, asyncSharedKafkaConfig);
 
     const serviceProvider: Provider = {
       provide: getMQToken(KAFKA_MODULE_PROVIDER),
@@ -88,12 +88,12 @@ export class KafkaModule {
 
   private static createAsyncSharedConfigurationProviders(
     configKey: string | undefined,
-    options: SharedBullAsyncConfiguration,
+    options: SharedKafkaAsyncConfiguration,
   ): Provider[] {
     if (options.useExisting || options.useFactory) {
       return [this.createAsyncSharedConfigurationProvider(configKey, options)];
     }
-    const useClass = options.useClass as Type<SharedBullConfigurationFactory>;
+    const useClass = options.useClass as Type<SharedKafkaConfigurationFactory>;
     return [
       this.createAsyncSharedConfigurationProvider(configKey, options),
       {
@@ -105,7 +105,7 @@ export class KafkaModule {
 
   private static createAsyncSharedConfigurationProvider(
     configKey: string,
-    options: SharedBullAsyncConfiguration,
+    options: SharedKafkaAsyncConfiguration,
   ): Provider<KafkaConfig> {
     if (options.useFactory) {
       return {
@@ -119,12 +119,12 @@ export class KafkaModule {
 
     return {
       provide: getSharedConfigToken(),
-      useFactory: async (optionsFactory: SharedBullConfigurationFactory) => optionsFactory.createSharedConfiguration(),
+      useFactory: async (optionsFactory: SharedKafkaConfigurationFactory) => optionsFactory.createSharedConfiguration(),
       inject,
     };
   }
 
-  private static getUniqImports(options: Array<BullModuleAsyncOptions | SharedBullAsyncConfiguration>) {
+  private static getUniqImports(options: Array<KafkaModuleAsyncOptions | SharedKafkaAsyncConfiguration>) {
     return (
       options
         .map((option) => option.imports)
