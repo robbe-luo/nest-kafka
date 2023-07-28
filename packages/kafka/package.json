@@ -18,7 +18,8 @@
   ],
   "files": [
     "dist",
-    "README.md"
+    "README.md",
+    "LICENSE"
   ],
   "author": "robbe luo <robbe.luo@gmail.com>",
   "main": "dist/index.js",
