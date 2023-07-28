@@ -77,7 +77,7 @@ Creating the consumer:
 
 ```js
 @Module({
-  imports: [KafkaModule.registryConsumer({ groupId: 'my-test-group-11' })],
+  imports: [KafkaModule.registryConsumer({ groupId: 'test-group' })],
   providers: [ConsumerService],
 })
 export class MessageQueueModule {}
@@ -86,7 +86,7 @@ export class MessageQueueModule {}
 Subscribing to some topics:
 
 ```typescript
-@KafkaConsumer('test-group')
+@KafkaConsumer({ groupId: 'test-group' })
 export class ConsumerService {
     @KafkaSubscribe('test-topic')
     async sub(payload: EachMessagePayload) {
