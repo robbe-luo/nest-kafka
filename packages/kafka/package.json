@@ -1,6 +1,6 @@
 {
   "name": "@robbe-luo/nest-kafka",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Kafka for NestJS",
   "homepage": "https://github.com/robbe-luo/nest-kafka/tree/main/packages/kafka/README.md",
   "bugs": {
